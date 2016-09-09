@@ -1,3 +1,6 @@
+
+import os
+
 from zope.interface import implements, classProvides
 
 from feat.agents.base import labour
@@ -21,10 +24,13 @@ class Production(labour.BaseLabour, server.Server):
                  server_stats=None,
                  thread_stats_file=None):
 
-        from django.utils import importlib
-        from django.core import management
-        module = importlib.import_module(settings_module)
-        management.setup_environ(module)
+        #from django.utils import importlib
+        #from django.core import management
+        import django
+        #module = importlib.import_module(settings_module)
+        #management.setup_environ(module)
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings_module)
+        django.setup()
 
         server.Server.__init__(self, host_name, port, log_keeper=log_keeper,
                                prefix=prefix, web_statistics=server_stats,
