@@ -49,7 +49,7 @@ class Command(BaseCommand):
 
 
     # Validation is called explicitly each time the server is reloaded.
-    requires_model_validation = False
+    requires_system_checks = False
 
     def handle(self, addrport='', *args, **options):
         if args:

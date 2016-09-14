@@ -26,11 +26,11 @@ class Production(labour.BaseLabour, server.Server):
 
         #from django.utils import importlib
         #from django.core import management
-        import django
+        from django import setup
         #module = importlib.import_module(settings_module)
         #management.setup_environ(module)
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings_module)
-        django.setup()
+        setup()
 
         server.Server.__init__(self, host_name, port, log_keeper=log_keeper,
                                prefix=prefix, web_statistics=server_stats,
